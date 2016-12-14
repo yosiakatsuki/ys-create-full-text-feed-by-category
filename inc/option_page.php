@@ -23,10 +23,14 @@
 						$option = get_site_option( 'ys_cftfbc_create_full_text_cat' );
 						$categories = get_categories();
 						foreach($categories as $category):
+							$checked = false;
+							if($option) {
+								$checked = in_array($category->cat_ID,$option);
+							}
 					?>
 					<tr valign="top">
 						<td scope="row">
-							<input type="checkbox" name="ys_cftfbc_create_full_text_cat[]" value="<?php echo $category->cat_ID; ?>" <?php checked(in_array($category->cat_ID,$option)); ?> />
+							<input type="checkbox" name="ys_cftfbc_create_full_text_cat[]" value="<?php echo $category->cat_ID; ?>" <?php checked($checked); ?> />
 							<?php echo $category->cat_name; ?>
 						</td>
 					</tr>
